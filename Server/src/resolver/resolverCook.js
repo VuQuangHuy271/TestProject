@@ -126,6 +126,7 @@ const resolver = {
                         message: 'Không tìm thấy cook!',
                     }
                 }
+
                 let trx_result = await db.transaction(async trx => {
 
                     await trx.table('Cook').where('Id', args.bodyData.dataCook.Id).update(args.bodyData.dataCook)
@@ -192,6 +193,7 @@ const resolver = {
                 }
             }
         }),
+
     }
 }
 module.exports = resolver
