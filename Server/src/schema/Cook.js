@@ -23,11 +23,14 @@ const typeDefs = gql `
     }
 
     input CreateCookInput {
-        
-        Anh: Upload,
+        dataCook: CookInput,
     }
 
     input UpdateCookInput {
+        dataCook: CookInput,
+    }
+
+    input UpdateCookInputReal {
         dataCook: CookInput,
         Anh: Upload,
     }
@@ -43,26 +46,18 @@ const typeDefs = gql `
         message: String!,
     }
 
-    type File {
-    filename: String!
-    mimetype: String!
-    encoding: String!
+    input searchCookInput {
+        Ten: String,
     }
-
-    type Query {
-    uploads: [File]
-    }
-
-
 
     # ROOT TYPE
     type Query {
         getListCook: GetListCookResponse
         getListCookByID(Id: Int): GetCookByIdResponse
+        searchCook(bodyData: searchCookInput): GetListCookResponse
     }
 
     type Mutation {
-        singleUpload(file: Upload!): File!
         CreateCook(bodyData: CreateCookInput): BResponse
         UpdateCook(bodyData: UpdateCookInput): BResponse
         DeleteCook(Id: Int): BResponse
